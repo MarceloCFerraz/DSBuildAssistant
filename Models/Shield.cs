@@ -1,6 +1,6 @@
+using DSR.Models.Attributes;
+
 namespace DSR.Models;
 
-public class Shield : Weapon
-{
-
-}
+public class Shield : ShieldAttributes
+{ }

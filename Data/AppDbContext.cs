@@ -1,4 +1,5 @@
 using DSR.Models;
+using DSR.Models.Upgrade;
 using Microsoft.EntityFrameworkCore;
 
 namespace DSR.Data;
@@ -31,7 +32,9 @@ public class AppDbContext : DbContext
         foreach (Armor armor in armors)
         {
             builder.Entity<Armor>().HasData(armor);
+            ICollection<ArmorUpgrade> upgrades = loadUpgrades(armor);
         }
+
 
         // ICollection<Shield> shields = this.loadDSRShields();
         // ICollection<Weapon> weapons = this.loadDSRWeapons();
@@ -40,6 +43,9 @@ public class AppDbContext : DbContext
     private ICollection<Weapon> loadDSRWeapons()
     {
         throw new NotImplementedException();
+        // ICollection<Weapon> weapons = new List<Weapon>(){
+        //     new Weapon()
+        // };
     }
 
     private ICollection<Shield> loadDSRShields()
@@ -47,9 +53,33 @@ public class AppDbContext : DbContext
         throw new NotImplementedException();
     }
 
+    private ICollection<ArmorUpgrade> loadUpgrades(Armor armor)
+    {
+        return new List<ArmorUpgrade>(){
+            new ArmorUpgrade(){
+                ArmorID = armor.ID,
+                BleedResistence = 0,
+                CurseResistence = 0,
+                Durability = 0,
+                FireProtection = 0,
+                LightningProtection = 0,
+                MagicProtection = 0,
+                Name = "",
+                PhysicalProtection = 0,
+                PoiseResistence = 0,
+                PoisonResistence = 0,
+                SlashProtection = 0,
+                Stage = 0,
+                StrikeProtection = 0,
+                ThrustProtection = 0,
+                Weight = 0,
+            }
+        };
+    }
+
     private ICollection<Armor> loadDSRArmors()
     {
-        ICollection<Armor> armors = new List<Armor>()
+        return new List<Armor>()
         {
             new Armor()
             {
@@ -1325,7 +1355,5 @@ public class AppDbContext : DbContext
                 PoiseResistence = 0
             },
         };
-
-        return armors;
     }
 }

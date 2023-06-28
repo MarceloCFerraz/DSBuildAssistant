@@ -1,4 +1,5 @@
-namespace DSR.Models;
+namespace DSR.Models.Upgrade;
+
 public enum UpgradePath
 {
     Regular,

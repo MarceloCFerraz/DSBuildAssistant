@@ -1,4 +1,5 @@
 namespace DSR.Models;
+
 public enum Scale
 {
     E = 1,
